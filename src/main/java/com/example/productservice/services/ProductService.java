@@ -1,10 +1,11 @@
 package com.example.productservice.services;
 
+import com.example.productservice.dtos.fakeStoreProductDto;
 import org.springframework.web.bind.annotation.PathVariable;
 
 public interface ProductService {
 
-    public String getProductById(Long id);
+    public fakeStoreProductDto getProductById(Long id);
 
     void getAllProducts();
 
