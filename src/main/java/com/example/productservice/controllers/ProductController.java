@@ -4,10 +4,10 @@ import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.dtos.fakeStoreProductDto;
 import com.example.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -26,16 +26,19 @@ public class ProductController {
     return productService.getProductById(id);
     }
     @GetMapping
-    public void getAllProducts() {
+    public List<GenericProductDto> getAllProducts() {
 
+        return productService.getAllProducts();
     }
 
     public void deleteProductById() {
 
     }
 
-    public void createProduct() {
+    @PostMapping
+    public GenericProductDto createProduct(@RequestBody GenericProductDto genericProductDto) {
 
+        return productService.createProduct(genericProductDto);
     }
 
     public void updateProductById() {
