@@ -15,7 +15,7 @@ import java.util.List;
 public class FakeStoreProductService implements ProductService {
 
     private RestTemplateBuilder restTemplateBuilder;
-    private String getSingleProductUrl = "https://fakestoreapi.com/products/{id}";
+    private String specificProductUrl = "https://fakestoreapi.com/products/{id}";
 
     private String genericProductsUrl = "https://fakestoreapi.com/products";
 
@@ -41,7 +41,7 @@ public class FakeStoreProductService implements ProductService {
     public GenericProductDto getProductById(Long id) {
         //Rest Template
         RestTemplate restTemplate = restTemplateBuilder.build();
-        ResponseEntity<fakeStoreProductDto> responseEntity = restTemplate.getForEntity(getSingleProductUrl,fakeStoreProductDto.class,id);
+        ResponseEntity<fakeStoreProductDto> responseEntity = restTemplate.getForEntity(specificProductUrl,fakeStoreProductDto.class,id);
 
         fakeStoreProductDto FakeStoreProductDto = responseEntity.getBody();
 
@@ -69,8 +69,13 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public void deleteProductById() {
+    public GenericProductDto deleteProductById(Long id) {
 
+        /*RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<fakeStoreProductDto> responseEntity = restTemplate.delete(specificProductUrl,);
+        fakeStoreProductDto FakeStoreProductDto = responseEntity.getBody();*/
+
+        return null;
     }
 
     @Override

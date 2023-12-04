@@ -13,7 +13,7 @@ public interface ProductService {
 
    List<GenericProductDto> getAllProducts();
 
-    void deleteProductById();
+    GenericProductDto deleteProductById(Long id);
 
     GenericProductDto createProduct(GenericProductDto genericProductDto);
 
