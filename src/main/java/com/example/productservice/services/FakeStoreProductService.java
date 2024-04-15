@@ -2,7 +2,10 @@ package com.example.productservice.services;
 
 import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.dtos.fakeStoreProductDto;
+import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,6 +41,7 @@ public class FakeStoreProductService implements ProductService {
         this.restTemplateBuilder = restTemplateBuilder;
     }
     @Override
+
     public GenericProductDto getProductById(Long id) {
         //Rest Template
         RestTemplate restTemplate = restTemplateBuilder.build();
@@ -91,7 +95,16 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public void updateProductById() {
+    public GenericProductDto updateProductById(Long id, GenericProductDto genericProductDto) {
+
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        HttpEntity<GenericProductDto> request = new HttpEntity<>(genericProductDto);
+        ResponseEntity<fakeStoreProductDto> responseEntity = restTemplate.exchange(specificProductUrl, HttpMethod.PUT, request,fakeStoreProductDto.class, id, genericProductDto);
+        fakeStoreProductDto FakeStoreProductDto = responseEntity.getBody();
+        GenericProductDto genericProductDto3 = convertToGenericProductDto(FakeStoreProductDto);
+
+        return genericProductDto3;
 
     }
+
 }
