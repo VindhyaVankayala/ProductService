@@ -1,22 +1,33 @@
 package com.example.productservice;
 
-import com.example.productservice.inheritancerelations.mappedsuperclass.Mentor;
+/*import com.example.productservice.inheritancerelations.mappedsuperclass.Mentor;
 import com.example.productservice.inheritancerelations.mappedsuperclass.MentorRepository;
 import com.example.productservice.inheritancerelations.mappedsuperclass.Student;
-import com.example.productservice.inheritancerelations.mappedsuperclass.StudentRepository;
+import com.example.productservice.inheritancerelations.mappedsuperclass.StudentRepository;*/
+import com.example.productservice.inheritancerelations.tableperclass.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Repository;
+
+import javax.sound.midi.Soundbank;
+import java.util.List;
 
 @SpringBootApplication
 public class ProductServiceApplication implements CommandLineRunner {
     private StudentRepository studentRepository;
     private MentorRepository mentorRepository;
 
-    ProductServiceApplication(@Qualifier("ms_studentrepository") StudentRepository studentRepository, @Qualifier("ms_mentorrepository") MentorRepository mentorRepository) {
+    private TaRepository taRepository;
+
+    private UserRepository userRepository;
+
+    ProductServiceApplication(@Qualifier("tpc_studentrepository") StudentRepository studentRepository, @Qualifier("tpc_mentorrepository") MentorRepository mentorRepository, UserRepository userRepository, TaRepository taRepository) {
         this.studentRepository = studentRepository;
         this.mentorRepository = mentorRepository;
+        this.userRepository = userRepository;
+        this.taRepository = taRepository;
     }
 
     /*ProductServiceApplication(@Qualifier("ms_mentorrepository") MentorRepository mentorRepository) {
@@ -50,6 +61,25 @@ public class ProductServiceApplication implements CommandLineRunner {
 
         mentorRepository.save(mentor);
 
+        User user = new User();
+        user.setName("Vindhya");
+        user.setEmail_id("vindhya@hotmail.com");
+
+        userRepository.save(user);
+
+        Ta ta = new Ta();
+        ta.setName("Manoj");
+        ta.setAvg_rating(4.8);
+        ta.setUniversity("DU");
+
+        taRepository.save(ta);
+
+        //Get all the users
+
+        List<User> users = userRepository.findAll();
+        for(User user1: users){
+            System.out.println(user1.toString());
+        }
     }
 
 }
