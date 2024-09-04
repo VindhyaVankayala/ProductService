@@ -5,7 +5,8 @@ import com.example.productservice.inheritancerelations.mappedsuperclass.MentorRe
 import com.example.productservice.inheritancerelations.mappedsuperclass.Student;
 import com.example.productservice.inheritancerelations.mappedsuperclass.StudentRepository;*/
 //import com.example.productservice.inheritancerelations.tableperclass.*;
-import com.example.productservice.inheritancerelations.joinedtable.*;
+//import com.example.productservice.inheritancerelations.joinedtable.*;
+import com.example.productservice.inheritancerelations.singletable.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,23 +23,30 @@ public class ProductServiceApplication implements CommandLineRunner {
 
     //private TaRepository taRepository;
 
-    private UserRepository userRepository;
+    //private UserRepository userRepository;
 
-    private com.example.productservice.inheritancerelations.joinedtable.UserRepository j_userrepository;
-    private com.example.productservice.inheritancerelations.joinedtable.StudentRepository j_studentrepository;
+    private com.example.productservice.inheritancerelations.singletable.UserRepository s_userrepository;
+    //private com.example.productservice.inheritancerelations.joinedtable.StudentRepository j_studentrepository;
+    private com.example.productservice.inheritancerelations.singletable.StudentRepository s_studentrepository;
+    //private com.example.productservice.inheritancerelations.joinedtable.MentorRepository j_mentorrepository;
+    private com.example.productservice.inheritancerelations.singletable.MentorRepository s_mentorrepository;
+    private com.example.productservice.inheritancerelations.singletable.TaRepository s_tarepository;
 
-    private com.example.productservice.inheritancerelations.joinedtable.MentorRepository j_mentorrepository;
-
-    ProductServiceApplication(@Qualifier("j_userrepository") com.example.productservice.inheritancerelations.joinedtable.UserRepository j_userrepository,
-                              @Qualifier("j_studentrepository") com.example.productservice.inheritancerelations.joinedtable.StudentRepository j_studentrepository,
-                              @Qualifier("j_mentorrepository") com.example.productservice.inheritancerelations.joinedtable.MentorRepository j_mentorrepository) {
+    ProductServiceApplication(@Qualifier("st_userrepository") com.example.productservice.inheritancerelations.singletable.UserRepository s_userrepository,
+                              @Qualifier("st_studentrepository") com.example.productservice.inheritancerelations.singletable.StudentRepository s_studentrepository,
+                              @Qualifier("st_mentorrepository") com.example.productservice.inheritancerelations.singletable.MentorRepository s_mentorrepository,
+                              @Qualifier("st_tarepository") com.example.productservice.inheritancerelations.singletable.TaRepository s_tarepository) {
         //this.studentRepository = studentRepository;
         //this.mentorRepository = mentorRepository;
         //this.userRepository = userRepository;
         //this.taRepository = taRepository;
-        this.j_userrepository = j_userrepository;
+        /*this.j_userrepository = j_userrepository;
         this.j_mentorrepository = j_mentorrepository;
-        this.j_studentrepository = j_studentrepository;
+        this.j_studentrepository = j_studentrepository;*/
+        this.s_studentrepository = s_studentrepository;
+        this.s_mentorrepository = s_mentorrepository;
+        this.s_userrepository = s_userrepository;
+        this.s_tarepository = s_tarepository;
     }
 
     /*ProductServiceApplication(@Qualifier("ms_mentorrepository") MentorRepository mentorRepository) {
@@ -60,7 +68,8 @@ public class ProductServiceApplication implements CommandLineRunner {
         student.setYear_of_passing((long)2019);
 
         //studentRepository.save(student);
-        j_studentrepository.save(student);
+        //j_studentrepository.save(student);
+        s_studentrepository.save(student);
         Mentor mentor = new Mentor();
         mentor.setName("Kshitij");
         mentor.setAvg_rating(4.5);
@@ -71,20 +80,22 @@ public class ProductServiceApplication implements CommandLineRunner {
         mentor.setEmail_id("Kshitij@scaler.com");
 
         //mentorRepository.save(mentor);
-        j_mentorrepository.save(mentor);
+        //j_mentorrepository.save(mentor);
+        s_mentorrepository.save(mentor);
         User user = new User();
         user.setName("Vindhya");
         user.setEmail_id("vindhya@hotmail.com");
 
         //userRepository.save(user);
-        j_userrepository.save(user);
-        /*Ta ta = new Ta();
+        //j_userrepository.save(user);
+        s_userrepository.save(user);
+        Ta ta = new Ta();
         ta.setName("Manoj");
         ta.setAvg_rating(4.8);
         ta.setUniversity("DU");
 
-        taRepository.save(ta);*/
-
+        //taRepository.save(ta);
+        s_tarepository.save(ta);
         //Get all the users
 
         /*List<User> users = userRepository.findAll();
