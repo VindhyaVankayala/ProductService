@@ -8,8 +8,10 @@ import com.example.productservice.inheritancerelations.mappedsuperclass.StudentR
 //import com.example.productservice.inheritancerelations.joinedtable.*;
 import com.example.productservice.inheritancerelations.singletable.*;
 import com.example.productservice.models.Category;
+import com.example.productservice.models.Price;
 import com.example.productservice.models.Product;
 import com.example.productservice.repositories.CategoryRepository;
+import com.example.productservice.repositories.PriceRepository;
 import com.example.productservice.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -31,7 +33,9 @@ public class ProductServiceApplication implements CommandLineRunner {
 
     //private UserRepository userRepository;
     private final CategoryRepository categoryRepository;
+    private final PriceRepository priceRepository;
     private final ProductRepository productRepository;
+//    private final ProductRepository productRepository;
 //    private com.example.productservice.inheritancerelations.singletable.UserRepository s_userrepository;
 //    //private com.example.productservice.inheritancerelations.joinedtable.StudentRepository j_studentrepository;
 //    private com.example.productservice.inheritancerelations.singletable.StudentRepository s_studentrepository;
@@ -56,9 +60,17 @@ public class ProductServiceApplication implements CommandLineRunner {
 //        this.s_tarepository = s_tarepository;
 //    }
 
+//    ProductServiceApplication(@Qualifier("categoryRepository") CategoryRepository categoryRepository,
+//                              @Qualifier("productRepository") ProductRepository productRepository) {
+//        this.categoryRepository = categoryRepository;
+//        this.productRepository = productRepository;
+//    }
+
     ProductServiceApplication(@Qualifier("categoryRepository") CategoryRepository categoryRepository,
-                              @Qualifier("productRepository") ProductRepository productRepository) {
+                              PriceRepository priceRepository,
+                              ProductRepository productRepository) {
         this.categoryRepository = categoryRepository;
+        this.priceRepository = priceRepository;
         this.productRepository = productRepository;
     }
 
@@ -120,13 +132,13 @@ public class ProductServiceApplication implements CommandLineRunner {
 //        category.setName("Apple");
 //        Category savedCategory = categoryRepository.save(category);
 
-        Optional<Category> optionalcategory = categoryRepository.findById(UUID.fromString("0c9e1dce-ea31-47e3-8db7-5a96018fb9b1"));
-
-        if(optionalcategory.isEmpty())
-        {
-            throw new Exception("category is NULL");
-        }
-        Category category = optionalcategory.get();
+//        Optional<Category> optionalcategory = categoryRepository.findById(UUID.fromString("0c9e1dce-ea31-47e3-8db7-5a96018fb9b1"));
+//
+//        if(optionalcategory.isEmpty())
+//        {
+//            throw new Exception("category is NULL");
+//        }
+//        Category category = optionalcategory.get();
 
 //        Product product = new Product();
 //        product.setTitle("Iphone 12");
@@ -137,11 +149,31 @@ public class ProductServiceApplication implements CommandLineRunner {
 //        productRepository.save(product);
 
         //Find all products with category = Apple Devices
-        List<Product> products = category.getProducts();
+//        List<Product> products = category.getProducts();
+//
+//        for(Product product: products){
+//            System.out.println(product.getTitle());
+//        }
 
-        for(Product product: products){
-            System.out.println(product.getTitle());
-        }
+        Category category = new Category();
+        category.setName("Apple Devices");
+
+        Category savedCategory = categoryRepository.save(category);
+
+        Price price = new Price();
+        price.setCurrency("INR");
+        price.setValue(80000.00);
+        //Price savedPrice = priceRepository.save(price);
+
+        Product product = new Product();
+        product.setCategory(savedCategory);
+        product.setTitle("Iphone 12");
+        product.setDescription("2021 model");
+        product.setPrice(price);
+
+        Product savedProduct = productRepository.save(product);
+
+        productRepository.deleteById(savedProduct.getId());
 
     }
 

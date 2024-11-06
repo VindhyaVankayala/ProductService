@@ -1,8 +1,7 @@
 package com.example.productservice.models;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,9 +12,14 @@ import lombok.Setter;
 public class Product extends BaseModel {
 
     private String title;
-    private Double price;
+
     private String Description;
     private String image;
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(nullable = false)
     private Category category;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, optional = false)
+    @JoinColumn(nullable = false, unique = true)
+    private Price price;
+
 }
