@@ -20,7 +20,7 @@ public class Category extends BaseModel {
     @Column(nullable = false, unique = true)
     private String Name;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(fetch = jakarta.persistence.FetchType.EAGER, mappedBy = "category")
     private List<Product> products;
 
 }

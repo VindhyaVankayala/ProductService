@@ -26,7 +26,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootApplication
-@Transactional
 public class ProductServiceApplication implements CommandLineRunner {
     //private StudentRepository studentRepository;
     //private MentorRepository mentorRepository;
