@@ -2,17 +2,16 @@ package com.example.productservice.models;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product extends BaseModel {
 
     private String title;
-
     private String Description;
     private String image;
     @ManyToOne(optional = false)
