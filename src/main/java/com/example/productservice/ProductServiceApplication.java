@@ -176,8 +176,8 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 //        productRepository.deleteById(savedProduct.getId());
 
-        Optional<Category> optionalCategory = categoryRepository.findById(UUID.fromString("2226e5e3-31e5-49e0-a6da-1df4049bc730"));
-        Category category = optionalCategory.get();
+//        Optional<Category> optionalCategory = categoryRepository.findById(UUID.fromString("2226e5e3-31e5-49e0-a6da-1df4049bc730"));
+//        Category category = optionalCategory.get();
 
 //        Price price2 = new Price();
 //        price2.setCurrency("AED");
@@ -202,13 +202,38 @@ public class ProductServiceApplication implements CommandLineRunner {
 //        product3.setPrice(price3);
 //        Product savedProduct3 = productRepository.save(product3);
 
-            List<Product> products = category.getProducts();
+//            List<Product> products = category.getProducts();
+//
+//            for(Product product: products){
+//                System.out.println(product.getTitle());
+//            }
+//        categoryRepository.deleteById(UUID.fromString("471b8ab0-a266-4a57-aad6-016f9f1f8d48"));
+//        Category category = new Category();
+//        category.setName("Samsung Devices");
+//        Category savedCategory = categoryRepository.save(category);
+//
+//        Product product4 = new Product();
+//        product4.setTitle("Samsung Galaxy S22");
+//        product4.setDescription("Samsung flagship phone");
+//        product4.setCategory(savedCategory);
+//
+//        Price price4 = new Price();
+//        price4.setCurrency("INR");
+//        price4.setValue(80000.00);
+//        //Price savedPrice4 = priceRepository.save(price4);
+//
+//        product4.setPrice(price4);
+//        productRepository.save(product4);
 
-            for(Product product: products){
-                System.out.println(product.getTitle());
-            }
+//        List<Product> products = productRepository.findAllByPrice_ValueBetween(1000,30000);
 
-
+//        List<Product> products = productRepository.findAllByTitleAndDescription("Iphone 12", "2021 model");
+//         List<Product> products = productRepository.findAllByPrice_ValueGreaterThan(50000);
+//        List<Product> products = productRepository.findAllByTitleLike("Iphone%");
+        List<Product> products = productRepository.findAllByTitle("Iphone 12");
+        for(Product product: products) {
+            System.out.println(product.getTitle());
+        }
     }
 
 }

@@ -12,7 +12,7 @@ import lombok.*;
 public class Product extends BaseModel {
 
     private String title;
-    private String Description;
+    private String description;
     private String image;
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false)
