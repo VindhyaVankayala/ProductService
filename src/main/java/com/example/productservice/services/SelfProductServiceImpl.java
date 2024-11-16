@@ -3,13 +3,16 @@ package com.example.productservice.services;
 import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.models.Product;
 import com.example.productservice.repositories.ProductRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Service("SelfProductService")
+//@Service("SelfProductService")
+@Service
+@Primary
 public class SelfProductServiceImpl implements ProductService{
 
     private  ProductRepository productRepository;
