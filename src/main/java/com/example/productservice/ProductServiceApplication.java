@@ -230,10 +230,10 @@ public class ProductServiceApplication implements CommandLineRunner {
 //        List<Product> products = productRepository.findAllByTitleAndDescription("Iphone 12", "2021 model");
 //         List<Product> products = productRepository.findAllByPrice_ValueGreaterThan(50000);
 //        List<Product> products = productRepository.findAllByTitleLike("Iphone%");
-        List<Product> products = productRepository.findAllByTitle("Iphone 12");
-        for(Product product: products) {
-            System.out.println(product.getTitle());
-        }
+//        List<Product> products = productRepository.findAllByTitle("Iphone 12");
+//        for(Product product: products) {
+//            System.out.println(product.getTitle());
+//        }
     }
 
 }
