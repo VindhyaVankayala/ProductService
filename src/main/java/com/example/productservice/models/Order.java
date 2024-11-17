@@ -14,4 +14,5 @@ public class Order extends BaseModel{
 
     @ManyToMany
     List<Product> products;
+    private String status;
 }
