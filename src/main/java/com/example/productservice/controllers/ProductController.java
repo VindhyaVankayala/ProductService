@@ -2,6 +2,7 @@ package com.example.productservice.controllers;
 
 import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.dtos.fakeStoreProductDto;
+import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ProductController {
         this.productService = productService;
     }
     @GetMapping("/{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) {
+    public GenericProductDto getProductById( @PathVariable("id") Long id) throws ProductNotFoundException {
         //System.out.printf("Hello Vindhya, This is your first Spring Boot Project!! Yayyyy!!!");
         //Call fakestoreProductService getProductById() method
     return productService.getProductById(id);

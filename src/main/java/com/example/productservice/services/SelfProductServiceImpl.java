@@ -1,6 +1,7 @@
 package com.example.productservice.services;
 
 import com.example.productservice.dtos.GenericProductDto;
+import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.models.Product;
 import com.example.productservice.repositories.ProductRepository;
 import org.springframework.context.annotation.Primary;
@@ -13,7 +14,7 @@ import java.util.UUID;
 //@Service("SelfProductService")
 
 //@Primary
-@Service
+@Service("SelfProductService")
 public class SelfProductServiceImpl implements ProductService{
 
     private  ProductRepository productRepository;
@@ -23,7 +24,7 @@ public class SelfProductServiceImpl implements ProductService{
     }
 
     @Override
-    public GenericProductDto getProductById(Long id) {
+    public GenericProductDto getProductById(Long id) throws ProductNotFoundException {
         GenericProductDto genericProductDto = new GenericProductDto();
         Optional<Product> optionalProduct = productRepository.findById(UUID.fromString("4a5cbaca-c71c-4843-86b6-84711c3aa9e2"));
         Product product = optionalProduct.get();

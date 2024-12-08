@@ -2,6 +2,7 @@ package com.example.productservice.services;
 
 import com.example.productservice.dtos.GenericProductDto;
 import com.example.productservice.dtos.fakeStoreProductDto;
+import com.example.productservice.exceptions.ProductNotFoundException;
 import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
@@ -42,7 +43,7 @@ public class FakeStoreProductService implements ProductService {
     }
     @Override
 
-    public GenericProductDto getProductById(Long id) {
+    public GenericProductDto getProductById(Long id) throws ProductNotFoundException {
         //Rest Template
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<fakeStoreProductDto> responseEntity = restTemplate.getForEntity(specificProductUrl,fakeStoreProductDto.class,id);
