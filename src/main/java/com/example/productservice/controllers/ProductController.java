@@ -24,7 +24,10 @@ public class ProductController {
     public GenericProductDto getProductById( @PathVariable("id") Long id) throws ProductNotFoundException {
         //System.out.printf("Hello Vindhya, This is your first Spring Boot Project!! Yayyyy!!!");
         //Call fakestoreProductService getProductById() method
-    return productService.getProductById(id);
+        //GenericProductDto genericProductDto1 = new GenericProductDto();
+        //return genericProductDto1;
+     return productService.getProductById(id);
+
     }
     @GetMapping
     public List<GenericProductDto> getAllProducts() {

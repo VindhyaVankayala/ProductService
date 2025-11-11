@@ -67,5 +67,33 @@ public class ProductControllerTest {
         assertThrows(ProductNotFoundException.class, () -> productController.getProductById(2L));
 
     }
+    @Test
+    void testGetProductByIdMocking() throws ProductNotFoundException{
+
+        GenericProductDto genericProductDto = new GenericProductDto();
+
+        when(productService.getProductById(200L)).thenReturn(null);
+
+         when(productService.getProductById((2000L))).thenReturn(genericProductDto);
+
+        assertNull(productController.getProductById(200L));
+
+        assertEquals(genericProductDto, productController.getProductById(2000L));
+    }
+
+    @Test
+    void testProductByIdException() throws ProductNotFoundException {
+
+        when(productService.getProductById(500L)).thenThrow(new ProductNotFoundException("Product with id: 500 not found"));
+
+        assertThrows(ProductNotFoundException.class, () -> productController.getProductById(500L));
+    }
+
+    @Test
+    void testProductByIdCustomLogic() throws ProductNotFoundException {
+        GenericProductDto genericProductDto = new GenericProductDto();
+        when(productService.getProductById(50L)).thenReturn(genericProductDto);
+        assertEquals(genericProductDto, productController.getProductById(50L));
+    }
 
 }

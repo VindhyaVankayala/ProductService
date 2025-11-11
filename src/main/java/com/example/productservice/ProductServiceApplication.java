@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import javax.sound.midi.Soundbank;
@@ -33,9 +34,9 @@ public class ProductServiceApplication implements CommandLineRunner {
     //private TaRepository taRepository;
 
     //private UserRepository userRepository;
-    private final CategoryRepository categoryRepository;
-    private final PriceRepository priceRepository;
-    private final ProductRepository productRepository;
+    //private final CategoryRepository categoryRepository;
+    //private final PriceRepository priceRepository;
+    //private final ProductRepository productRepository;
 //    private final ProductRepository productRepository;
 //    private com.example.productservice.inheritancerelations.singletable.UserRepository s_userrepository;
 //    //private com.example.productservice.inheritancerelations.joinedtable.StudentRepository j_studentrepository;
@@ -61,19 +62,20 @@ public class ProductServiceApplication implements CommandLineRunner {
 //        this.s_tarepository = s_tarepository;
 //    }
 
+    /*ProductServiceApplication(ProductRepository productRepository,
+                              PriceRepository priceRepository) {
+
+        this.productRepository = productRepository;
+        this.priceRepository = priceRepository;
+    }*/
+
 //    ProductServiceApplication(@Qualifier("categoryRepository") CategoryRepository categoryRepository,
-//                              @Qualifier("productRepository") ProductRepository productRepository) {
+//                              PriceRepository priceRepository,
+//                              ProductRepository productRepository) {
 //        this.categoryRepository = categoryRepository;
+//        this.priceRepository = priceRepository;
 //        this.productRepository = productRepository;
 //    }
-
-    ProductServiceApplication(@Qualifier("categoryRepository") CategoryRepository categoryRepository,
-                              PriceRepository priceRepository,
-                              ProductRepository productRepository) {
-        this.categoryRepository = categoryRepository;
-        this.priceRepository = priceRepository;
-        this.productRepository = productRepository;
-    }
 
     /*ProductServiceApplication(@Qualifier("ms_mentorrepository") MentorRepository mentorRepository) {
         this.mentorRepository = mentorRepository;
