@@ -79,7 +79,7 @@ public class ProductServiceApplication implements CommandLineRunner {
 
     /*ProductServiceApplication(@Qualifier("ms_mentorrepository") MentorRepository mentorRepository) {
         this.mentorRepository = mentorRepository;
-    }*/
+    }
 
     public static void main(String[] args) {
 
@@ -235,7 +235,15 @@ public class ProductServiceApplication implements CommandLineRunner {
 //        List<Product> products = productRepository.findAllByTitle("Iphone 12");
 //        for(Product product: products) {
 //            System.out.println(product.getTitle());
-//        }
+
+    @Override
+    public void run(String... args) throws Exception {
+        // Add your logic here or leave it empty if no specific logic is needed
+        System.out.println("Application started successfully!");
     }
 
+    public static void main(String[] args) {
+
+        SpringApplication.run(ProductServiceApplication.class, args);
+    }
 }
